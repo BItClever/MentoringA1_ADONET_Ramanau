@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MentoringA1_ADONET_Ramanau.Interfaces;
+using System;
 
 namespace MentoringA1_ADONET_Ramanau
 {
@@ -6,7 +7,11 @@ namespace MentoringA1_ADONET_Ramanau
     {
         public void Start()
         {
-            using (var unitOfWork = new UnitOfWork())
+            var serviceLocator = new ServiceLocator();
+            using (var unitOfWork = new UnitOfWork(
+                serviceLocator.Resolve<IOrderRepository>(),
+                serviceLocator.Resolve<IOrderHistoryRepository>(),
+                serviceLocator.Resolve<IOrderDetailsRepository>()))
             {
                 var orders = unitOfWork.GetAllOrders();
                 var order = unitOfWork.GetOrderById(10248);

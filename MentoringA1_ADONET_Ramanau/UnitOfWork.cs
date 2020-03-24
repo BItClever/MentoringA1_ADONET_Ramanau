@@ -8,18 +8,26 @@ namespace MentoringA1_ADONET_Ramanau
 {
     public class UnitOfWork : IDisposable
     {
-        private readonly OrderRepository orderRepository;
-        private readonly OrderDetailsRepository orderDetailsRepository;
-        private readonly OrderHistoryRepository orderHistoryRepository;
-        private readonly ConnectionContext context;
+        private readonly IOrderRepository orderRepository;
+        private readonly IOrderDetailsRepository orderDetailsRepository;
+        private readonly IOrderHistoryRepository orderHistoryRepository;
+        private ConnectionContext context;
         private bool disposed = false;
 
-        public UnitOfWork()
+        public UnitOfWork(IOrderRepository orderRepository, IOrderHistoryRepository orderHistoryRepository, IOrderDetailsRepository orderDetailsRepository)
+        {
+            this.orderRepository = orderRepository;
+            this.orderDetailsRepository = orderDetailsRepository;
+            this.orderHistoryRepository = orderHistoryRepository;
+            SetupContext();
+        }
+
+        private void SetupContext()
         {
             context = new ConnectionContext();
-            orderRepository = new OrderRepository(context);
-            orderDetailsRepository = new OrderDetailsRepository(context);
-            orderHistoryRepository = new OrderHistoryRepository(context);
+            orderRepository.SetupContext(context);
+            orderDetailsRepository.SetupContext(context);
+            orderHistoryRepository.SetupContext(context);
         }
 
         public bool AddOrder(Order order)

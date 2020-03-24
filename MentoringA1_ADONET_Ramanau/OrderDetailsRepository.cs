@@ -1,14 +1,16 @@
-﻿using System;
+﻿using MentoringA1_ADONET_Ramanau.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace MentoringA1_ADONET_Ramanau
 {
-    public class OrderDetailsRepository
+    public class OrderDetailsRepository : IOrderDetailsRepository
     {
-        private readonly ConnectionContext context;
-        public OrderDetailsRepository(ConnectionContext context)
+        private ConnectionContext context;
+
+        public void SetupContext(ConnectionContext context)
         {
             this.context = context;
         }

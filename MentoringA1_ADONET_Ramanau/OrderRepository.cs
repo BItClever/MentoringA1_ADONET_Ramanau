@@ -1,4 +1,5 @@
-﻿using MentoringA1_ADONET_Ramanau.Models;
+﻿using MentoringA1_ADONET_Ramanau.Interfaces;
+using MentoringA1_ADONET_Ramanau.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,11 +7,10 @@ using System.Data.SqlClient;
 
 namespace MentoringA1_ADONET_Ramanau
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
-        private readonly ConnectionContext context;
-
-        public OrderRepository(ConnectionContext context)
+        private ConnectionContext context;
+        public void SetupContext(ConnectionContext context)
         {
             this.context = context;
         }
