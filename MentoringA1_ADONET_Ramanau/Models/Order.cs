@@ -11,7 +11,7 @@ namespace MentoringA1_ADONET_Ramanau.Models
     }
     public class Order
     {
-        private DateTime? shippedDate = null;
+        private DateTime? shippedDate;
         public Status OrderStatus { get; private set; }
         public int? OrderID { get; set; }
         public string CustomerID { get; set; }
@@ -53,20 +53,6 @@ namespace MentoringA1_ADONET_Ramanau.Models
 
         public Order() 
         { 
-            OrderID = null;
-            CustomerID = null;
-            EmployeeID = null;
-            OrderDate = null;
-            RequiredDate = null;
-            ShippedDate = null;
-            ShipVia = null;
-            Freight = null;
-            ShipName = null;
-            ShipAddress = null;
-            ShipCity = null;
-            ShipRegion = null;
-            ShipPostalCode = null;
-            ShipCountry = null;
             OrderedProduct = new Product();
         }
     }

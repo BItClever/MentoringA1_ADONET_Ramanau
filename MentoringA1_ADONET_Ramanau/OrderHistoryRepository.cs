@@ -16,7 +16,6 @@ namespace MentoringA1_ADONET_Ramanau
         public List<CustOrderHist> GetAll(string customerID)
         {
             context.OpenConnection();
-            Dictionary<Product, int> custorderhist = new Dictionary<Product, int>();
             List<CustOrderHist> orderHist = new List<CustOrderHist>();
 
             var command = context.CreateCommand();

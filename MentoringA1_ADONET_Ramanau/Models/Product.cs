@@ -12,19 +12,5 @@
         public int? UnitsOnOrder { get; set; }
         public int? ReorderLevel { get; set; }
         public int? Discountinued { get; set; }
-
-        public Product() 
-        { 
-            ProductID = null;
-            ProductName = null; 
-            SupplierID = null; 
-            CategoryID = null;
-            QuantityPerUnit = null;
-            UnitPrice = null;
-            UnitslnStock = null;
-            UnitsOnOrder = null;
-            ReorderLevel = null;
-            Discountinued = null;
-        }
     }
 }

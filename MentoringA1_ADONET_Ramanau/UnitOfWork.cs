@@ -8,54 +8,53 @@ namespace MentoringA1_ADONET_Ramanau
 {
     public class UnitOfWork : IDisposable
     {
-        public IRepository<Product> ProductRepository { get; set; }
-        public OrderRepository OrderRepository { get; set; }
-        public OrderDetailsRepository OrderDetailsRepository { get; set; }
-        public OrderHistoryRepository OrderHistoryRepository { get; set; }
+        private readonly OrderRepository orderRepository;
+        private readonly OrderDetailsRepository orderDetailsRepository;
+        private readonly OrderHistoryRepository orderHistoryRepository;
         private readonly ConnectionContext context;
         private bool disposed = false;
 
         public UnitOfWork()
         {
             context = new ConnectionContext();
-            OrderRepository = new OrderRepository(context);
-            OrderDetailsRepository = new OrderDetailsRepository(context);
-            OrderHistoryRepository = new OrderHistoryRepository(context);
+            orderRepository = new OrderRepository(context);
+            orderDetailsRepository = new OrderDetailsRepository(context);
+            orderHistoryRepository = new OrderHistoryRepository(context);
         }
 
         public bool AddOrder(Order order)
         {
-            return OrderRepository.Create(order);
+            return orderRepository.Create(order);
         }
 
         public bool ChangeOrderDate(DateTime orderDate, int orderID)
         {
-            return OrderRepository.ChangeOrderDate(orderDate, orderID);
+            return orderRepository.ChangeOrderDate(orderDate, orderID);
         }
 
         public bool ChangeShippedDate(DateTime shippedDate, int orderID)
         {
-            return OrderRepository.ChangeShippedDate(shippedDate, orderID);
+            return orderRepository.ChangeShippedDate(shippedDate, orderID);
         }
 
         public List<CustOrderHist> CustOrderHist(string customerID)
         {
-            return OrderHistoryRepository.GetAll(customerID);
+            return orderHistoryRepository.GetAll(customerID);
         }
 
         public List<CustOrdersDetails> CustOrdersDetail(string orderID)
         {
-            return OrderDetailsRepository.GetAll(orderID);
+            return orderDetailsRepository.GetAll(orderID);
         }
 
         public Order GetOrderById(int OrderID)
         {
-            return OrderRepository.Get(OrderID);
+            return orderRepository.Get(OrderID);
         }
 
         public List<Order> GetAllOrders()
         {
-            return OrderRepository.GetAll().ToList();
+            return orderRepository.GetAll().ToList();
         }
         public void Dispose()
         {

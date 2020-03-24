@@ -6,29 +6,29 @@ namespace MentoringA1_ADONET_Ramanau
 {
     public class ConnectionContext : IDisposable
     {
-        private SqlConnection Connection { get; set; }
+        private readonly SqlConnection connection;
         private ConnectionStringSettings connectionString { get; set; }
         private bool disposed = false;
 
         public ConnectionContext()
         {
             connectionString = ConfigurationManager.ConnectionStrings["NorthwindConnection"];
-            Connection = new SqlConnection(connectionString.ConnectionString);
+            connection = new SqlConnection(connectionString.ConnectionString);
         }
 
         public SqlCommand CreateCommand()
         {
-            return Connection.CreateCommand();
+            return connection.CreateCommand();
         }
 
         public void OpenConnection()
         {
-            Connection.Open();
+            connection.Open();
         }
 
         public void CloseConnection()
         {
-            Connection.Close();
+            connection.Close();
         }
 
         public void Dispose()
@@ -43,7 +43,7 @@ namespace MentoringA1_ADONET_Ramanau
             {
                 if (disposing)
                 {
-                    Connection.Close();
+                    connection.Close();
                 }
                 disposed = true;
             }
