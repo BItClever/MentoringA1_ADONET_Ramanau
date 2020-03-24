@@ -7,7 +7,7 @@ namespace MentoringA1_ADONET_Ramanau
     public class ConnectionContext : IDisposable
     {
         private readonly SqlConnection connection;
-        private ConnectionStringSettings connectionString { get; set; }
+        private ConnectionStringSettings connectionString;
         private bool disposed = false;
 
         public ConnectionContext()
