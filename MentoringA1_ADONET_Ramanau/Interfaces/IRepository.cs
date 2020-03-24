@@ -6,8 +6,8 @@ namespace MentoringA1_ADONET_Ramanau.Interfaces
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        void Create(T item);
-        void Update(T item);
+        bool Create(T item);
+        bool Update(T item);
         void Delete(int id);
     }
 }
